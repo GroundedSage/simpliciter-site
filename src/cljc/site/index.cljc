@@ -8,7 +8,19 @@
      ;;;;;;;;;   HOME PAGE SPECIFIC   ;;;;;;;;;;;;
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(rum/defc qualification-title []
+  [:h3 {:class [(at-media {:max-width "30rem"} {:align-self "center"})]}
+   "Qualifications"])
 
+;
+(defn make-list [items]
+  (reduce conj [:ul {:class [(css {:margin 0})]}]
+   (map #(conj [:li {:class [(css {:list-style "none"
+                                   :margin-bottom "-2em"
+                                   :padding 0})]}
+
+                 %])
+      items)))
 
 
 (rum/defc kayne []
@@ -17,20 +29,10 @@
                         :align-items "center"})]}
      [:img {:src "photos/kayne.png"
             :alt "Photo of Kayne Roy Ballard"
-            :class [(css {:width "10em"})]}]
+            :class [(css {:height "12em"})]}]
      [:h2 "Kayne Roy Ballard"]
      [:span "Solicitor and Migration Agent"]]
 
-   [:div
-     [:h3 {:class [(css {:align-self "center"})]} "Qualifications"]
-     [:p "2012 Bachelor of Laws" [:br] "James Cook University"]
-     [:p "Grad Dip LP" [:br] "Australian National University"]
-     [:p "Admitted in Supreme Court of Queensland and High Court of Australia"]
-     [:p "Member of:" [:br] "Queensland Law Society"]
-     [:p "2013 Graduate Certificate TESOL" [:br] "Griffit University"]
-     [:p "2015 Graduate Diploma Migration Law" [:br] "Australian National University"]
-     [:p "2016 Admitted in the High Court of New Zealand"]
-     [:p "Registed Migration Agent" [:br] "(Number: 1679907), 2016"]]
 
    [:div
     [:h3 "More about Kayne"]
@@ -60,16 +62,17 @@
      [:span "Solicitor and Businss Consultant"]]
 
    [:div
-     [:h3 {:class [(css {:align-self "center"})]} "Qualifications"]
-     [:div {:style {:width "100%"}}
-       [:p "2010 LLB (Hons)" [:br] "Southern Cross University"]
-       [:p "2012 Grad Dip LP" [:br] "Queensland University of Technology"]
-       [:p "2013 Admitted in the Supreme Court of Queensland"]
-       [:p "Membor of:" [:br] "Queensland Law Society" [:br] "Lawyers Beyond Borders"]
-       [:p "2014 Qualified as Theta Healing Practitioner"]
-       [:p "2015 Admitted in the High Court of Australia"]
-       [:p "Practice Management Course - FMRC"]
-       [:p "Certificate IV Small Business Managament"]]]
+     (qualification-title)
+     (make-list
+      [
+       [:p [:b "2010 LLB (Hons)"] [:br] "Southern Cross University"]
+       [:p [:b "2012 Grad Dip LP"] [:br] "Queensland University of Technology"]
+       [:p [:b "2013 Admitted in the Supreme Court of Queensland"]]
+       [:p [:b "Member of:"] [:br] "Queensland Law Society" [:br] "Lawyers Beyond Borders"]
+       [:p [:b "2014 Qualified as Theta Healing Practitioner"]]
+       [:p [:b "2015 Admitted in the High Court of Australia"]]
+       [:p [:b "Practice Management Course - FMRC"]]
+       [:p [:b "Certificate IV Small Business Managament"]]])]
 
    [:div
     [:h3 "More about Jazz"]
@@ -119,7 +122,7 @@
 
 
 (rum/defc directors[]
-  [:section
+  [:section {:class [(css {:margin-top "45rem"})]}
     [:h1 {:class [(css {:align-self "center"})]} "Our Directors"]
    (kayne)
    (jazz)])

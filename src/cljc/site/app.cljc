@@ -70,7 +70,9 @@
    [:div {:style {:background-image "url(\"/photos/bg.jpg\")"
                   :background-size "contain"
                   :background-repeat "no-repeat"
-                  :padding-top "70%"}}
+                  :padding-top "70%"
+                  :width "100%"
+                  :position "absolute"}}
     (svg)]
 
    (main content)])

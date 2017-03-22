@@ -55,6 +55,38 @@
 
 }
 
+
+@media (max-width: 25em) {
+  html {
+      font-size: 1em;
+  }
+  h1 {
+        font-size: 1.602em;
+      line-height: 1.1;
+      margin-bottom: calc((1.5rem - (1.602rem * 1.1)) + 1.5rem);
+      margin-top: 1.5rem;
+  }
+  h2 {
+        font-size: 1.424em;
+      line-height: 1.1;
+      margin-bottom: calc((1.5rem - (1.424rem * 1.1)) + 1.5rem);
+      margin-top: 1.5rem;
+
+
+  }
+  h3 {
+        font-size: 1.266em;
+      line-height: 2rem;
+      margin-bottom: calc((1.5rem - 1.266rem) + 1.5rem);
+      margin-top: 1.5rem;
+  }
+
+  h4 {
+        font-size: 1.125em;
+  }
+
+}
+
 @media (min-width: 25em) and (max-width: 62.5em)
 {
     html {
@@ -114,19 +146,48 @@ h4 {
         font-size: 1.5em;
     }
     h1 {
-        font-size: 2.441em;
+        font-size: 2.441rem;
+        line-height: 1.1;
+        margin-bottom: calc((1.5rem - (2.441rem * 1.1)) + 1.5rem);
+        margin-top: 1.5rem;
     }
     h2 {
-        font-size: 1.953em;
+        font-size: 1.953rem;
+        line-height: 1.1;
+        margin-bottom: calc((1.5rem - (1.953rem * 1.1)) + 1.5rem);
+        margin-top: 1.5rem;
+
+
     }
     h3 {
-        font-size: 1.563em;
+        font-size: 1.563rem;
+        line-height: 2rem;
+        margin-bottom: calc((1.5rem - 2rem) + 1.5rem);
+        margin-top: 1.5rem;
     }
     h4 {
-        font-size: 1.250em;
+        font-size: 1.250rem;
     }
-
-
-
-
 }
+
+span {
+  line-height: 1.5rem;}
+
+
+  /*Because we’ll be needing this in most cases it’s the best practice to assign default line-height, margins and paddings to all elements and deviate from it  only when necessary.
+
+
+* {
+ line-height: 30px;
+ margin-top: 0;
+ margin-bottom: 30px; // = 1 * 30px
+}
+
+So if you want your lists to have a specific bottom margin, you’d go for something like this:
+
+
+ul, ol {
+ margin-bottom: 60px; // = 2 * 30px
+}
+
+*/

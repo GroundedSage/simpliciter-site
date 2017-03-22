@@ -362,7 +362,7 @@
 
 
 
-     [:h1 :h2 :h3 :h4 :p {:margin 0
+     [:h1 :h2 :h3 :h4 :p {
                           :font-weight 'normal}]
 
      [:h1 :h2 :h3 :h4 {:font-family 'bitter}]
@@ -461,17 +461,17 @@
 
      ;; These need to be reviewed !!
 
-     [:h1
-      {:margin-top (em 1.5)}]
+
 
 
      [:li :dt :dd :br :th :td {:margin 0}]
 
-     ["* + h2" "* + h3" {:margin-top (em 1.5)}]
+     ;["* + h2" "* + h3" {:margin-top (em 1.5)}]
 
      [":main :empty" {:display 'none}]
 
      ["p + p" {:margin-top 0}]
+     ["h3 + p" {:margin-top 0}]
 
 
 

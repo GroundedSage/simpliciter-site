@@ -8,12 +8,14 @@
      ;;;;;;;;;   HOME PAGE SPECIFIC   ;;;;;;;;;;;;
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def qual-style {:class [(css {:background-color "lightgrey"
+(def qual-style {:class ["qual-style"
+                         (css {:background-color "lightgrey"
                                :padding-left "2em"
-                               :padding-right "2em"
-                               :max-width "25em"})
-                         (at-media {:min-width "78.125em"} {:margin-left "40vw"
-                                                            :margin-top "-18em"})]})
+                               :padding-right "2em"})
+                         (at-media {:min-width "78.125"} {:max-width "25em"})]})
+
+
+
 
 
 (rum/defc qualification-title []
@@ -33,21 +35,21 @@
 
 (rum/defc kayne []
   [:div
-   [:div {:class [(css {:align-self "center"
-                        :align-items "center"})]}
-     [:div {:class [(at-media {:min-width "31.25em"} {:flex-direction "row"
-                                                      :justify-content "space-between"
-                                                      :width "25em"
-                                                      :align-self "flex-start"})
-                    (at-media {:min-width "78.125em"} {:flex-direction "column"})]}
+   [:div ;{:class [(css {:align-self "center"
+        ;                :align-items "center"
+     [:div.profile
        [:img {:src "photos/kayne.png"
               :alt "Photo of Kayne Roy Ballard"
               :class [(css {:height "12em"
-                            :max-width "12em"})]}]
-       [:div
+                            :width "12em"})
+                      (at-media {:min-width "88.75rem"}
+                            {:height "15rem"
+                             :width "15rem"})]}]
+       [:div.name-tag
         [:h2 "Kayne Roy Ballard"]
         [:span "Solicitor and Migration Agent"]]]
-    [:div {:class [(at-media {:min-width "88.75rem"} {:flex-direction "row"})]}
+    [:div {:class [(at-media {:min-width "88.75rem"} {:flex-direction "row"
+                                                      :justify-content "space-between"})]}
      [:div qual-style
        (qualification-title)
        (make-list
@@ -62,15 +64,12 @@
          [:p [:b "Registered Migration Agent:"] [:br] "(Number: 1679907), 2016"]])]
 
 
-     [:div {:class [(at-media {:min-width "88.75rem"} {:background "lightgreen"
-                                                       :max-width "32rem"
-                                                       :padding-left "2rem"
-                                                       :padding-right "2rem"})
-                    (at-media {:min-width "78.125em"} {:width "22em"
-                                                       :margin-top "-21em"})]}
-      [:h3 [(at-media {:min-width "78.125em"} {:width "22em"
-                                               :margin-top "-21em"})]
-       "More about Kayne"]
+     [:div {:class ["more"
+                    (at-media {:min-width "88.75rem"} {:background "lightgreen"})]}
+
+
+
+      [:h3 "More about Kayne"]
       [:p "Kayne Roy Ballard, Legal Practice Director (Main), obtained a Bachelor of Laws, and was admitted as a solicitor of the Supreme Court of Queensland in 2012."]
       [:p "In 2013 Kayne obtained his Teaching English as a Second Language certification, which enables him to educate students acquiring English as a second language for academic purposes. This assisted him in his volunteer role as a tutor for adults."]
       [:p "Working in a well regarded Gold Coast law firm from 2013 to 2016, Kayne is experienced across numerous legal fields. His skills and knowledge base includes:"]
@@ -88,8 +87,8 @@
 ;
 (rum/defc jazz []
   [:div
-   [:div {:class [(css {:align-self "center"
-                        :align-items "center"})]}
+   [:div ;{:class [(css {:align-self "center"
+          ;              :align-items "center"
      [:img {:src "photos/jazz.png"
             :alt "Photo of Jasmine Dominic"
             :style {:height "12em"}}]
@@ -159,10 +158,11 @@
 
 
 (rum/defc directors[]
-  [:section {:class [(css {:margin-top "45rem"
-                           :padding-left "1.5em"
-                           :padding-right "1.5em"})]}
-    [:h1 {:class [(css {:align-self "center"})]} "Our Directors"]
+  [:section {:class [(css {:margin-top "45rem"})
+                     (at-media {:max-width "78.125em"} {:padding-left "1.5em"
+                                                        :padding-right "1.5em"})]}
+    [:h1 {:class [(css {:align-self "center"
+                        :margin-bottom "Our Directors"})]}]
    (kayne)
    (jazz)])
 

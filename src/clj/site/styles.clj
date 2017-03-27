@@ -223,10 +223,13 @@
 
 
      [:main {:width "100vw"
-        ;     :max-width (em 53)
+             :max-width (em 53)
+             :background-color "red"
              :align-self 'center
              :padding {:left (em 0.5)
                        :right (em 0.5)}}]
+     (at-media {:min-width "53em"}
+               [:#main {:padding "0em"}])
 
      ;
      [:ul {:margin-left (rem -0.3125)}]
@@ -521,20 +524,50 @@
      ;;;;;;;;;   CONSULTING PAGE   ;;;;;;;;;;
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-     [:.buffer-top {:margin-top (em 1.5)}]
-     [:.buffer-top-large {:margin-top (em 3)}]
+     (at-media {:max-width "31.25em"}
+         [:.profile {:align-items "center"}])
 
 
-     [:.centre {:align-self 'center}]
+     (at-media {:min-width "31.25em"
+                :max-width "78.125em"}
 
-     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     ;; DIFFICULT TO REMOVE
+       [:.profile {:flex-direction "row"
+                   :justify-content "space-between"
+                   :width "25em"}])
+
+     (at-media {:min-width "31.25em"}
+              [:.profile {:align-self "flex-start"}])
+
+     (at-media {:min-width "78.125em" :max-width "88.75rem"}
+              [:.qual-style {:margin-left "40vw"
+                              :margin-top "-18em"}]
+              [:.more {:width "22em"
+                       :margin-top "-19.5rem"}])
 
 
-     [:ul.service-list {:margin-left (rem -0.3125)}
-       [:a {:text-decoration 'underline}
-        [:&:hover
-         :&:focus {:font-weight 'bold}]]]
+     (at-media {:min-width "88.75rem"}
+
+              [:.qual-style {:margin-left "0em"
+                               :margin-top "0em"
+                               :padding-left "0em"
+                               :width "15em"}]
+
+              [:.profile {:flex-direction "row"
+                          :justify-content "space-between"
+                          :width "100%"}]
+
+              [:.name-tag {:width "35rem"}]
+
+              [:.more {:margin-top "-6rem"
+                       :width "35rem"}
+
+                [:h3 {:display "none"}]])
+
+
+     (at-media {:min-width "88.75"}
+               [:.solicitor-details
+                 {:flex-direction "row"}])
+
 
 
        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

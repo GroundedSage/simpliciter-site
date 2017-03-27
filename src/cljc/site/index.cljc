@@ -9,7 +9,9 @@
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def qual-style {:class ["qual-style"
-                         (css {:background-color "lightgrey"
+                         (css {:background-color "rgba(255,255,255,0.5)"
+                               :border "solid rgba(200,200,200) 2px"
+                               :border-radius "0.5rem"
                                :padding-left "2em"
                                :padding-right "2em"})
                          (at-media {:min-width "78.125"} {:max-width "25em"})]})
@@ -35,8 +37,7 @@
 
 (rum/defc kayne []
   [:div
-   [:div ;{:class [(css {:align-self "center"
-        ;                :align-items "center"
+   [:div
      [:div.profile
        [:img {:src "photos/kayne.png"
               :alt "Photo of Kayne Roy Ballard"
@@ -64,10 +65,7 @@
          [:p [:b "Registered Migration Agent:"] [:br] "(Number: 1679907), 2016"]])]
 
 
-     [:div {:class ["more"
-                    (at-media {:min-width "88.75rem"} {:background "lightgreen"})]}
-
-
+     [:div.more
 
       [:h3 "More about Kayne"]
       [:p "Kayne Roy Ballard, Legal Practice Director (Main), obtained a Bachelor of Laws, and was admitted as a solicitor of the Supreme Court of Queensland in 2012."]
@@ -87,16 +85,21 @@
 ;
 (rum/defc jazz []
   [:div
-   [:div ;{:class [(css {:align-self "center"
-          ;              :align-items "center"
+   [:div
+    [:div.profile
      [:img {:src "photos/jazz.png"
             :alt "Photo of Jasmine Dominic"
-            :style {:height "12em"}}]
-     [:div
+            :class [(css {:height "12em"
+                          :width "12em"})
+                    (at-media {:min-width "88.75rem"}
+                          {:height "15rem"
+                           :width "15rem"})]}]
+     [:div.name-tag
        [:h2 "Jasmine Dominic"]
-       [:span "Solicitor and Business Consultant"]]]
-   [:div
+       [:span "Solicitor and Business Consultant"]]]]
 
+   [:div {:class [(at-media {:min-width "88.75rem"} {:flex-direction "row"
+                                                     :justify-content "space-between"})]}
      [:div qual-style
        (qualification-title)
        (make-list
@@ -110,7 +113,7 @@
          [:p [:b "Practice Management Course - FMRC"]]
          [:p [:b "Certificate IV Small Business Managament"]]])]
 
-     [:div
+     [:div.more
       [:h3 "More about Jazz"]
       [:p "Commencing her working life as an “office junior” and quickly working her way up to the position of paralegal and then qualifying as a lawyer, Jasmine has 17 years’ experience working in legal offices."]
       [:p "From 2000 to 2008 Jasmine worked in various law firms, of all sizes, in Brisbane until moving overseas to live and study in Switzerland for two years.  Jasmine completed her law degree in Switzerland and upon her return to Australia completed her Graduate Diploma in Legal Practice, whilst working on a contract basis for various Brisbane law firms."]
@@ -130,20 +133,30 @@
 
 
 ;
+(def contact-styles {:class [(at-media {:min-width "30rem"}
+                              {:flex-direction "row"
+                               :align-items "baseline"
+                               :width "23rem"
+                               :justify-content "space-between"})]})
+
 (rum/defc contact-us []
   [:section
-   [:h1 "Contact Us"]
-
-   [:h2 "Address:"]
-   [:span "9 Lawson Street Southport, QLD 4215"]
-   [:h2 "Mail:"]
-   [:span "PO Box 214, Isle of Capri"]
-   [:h2 "Telephone:"]
-   [:span "07 5660 6509"]
-   [:h2 "Fax:"]
-   [:span "07 5636 0925"]
-   [:h2 "Email:"]
-   [:span "admin@simpliciterlegal.com.au"]
+   [:h2 "Contact Us"]
+   [:div contact-styles
+     [:strong "Address:"]
+     [:span "9 Lawson Street Southport, QLD 4215"]]
+   [:div contact-styles
+     [:strong "Mail:"]
+     [:span "PO Box 214, Isle of Capri"]]
+   [:div contact-styles
+     [:strong "Telephone:"]
+     [:span "07 5660 6509"]]
+   [:div contact-styles
+     [:strong "Fax:"]
+     [:span "07 5636 0925"]]
+   [:div contact-styles
+     [:strong "Email:"]
+     [:span "admin@simpliciterlegal.com.au"]]
 
    [:div
     [:p {:class [(css {:font-size "1.125em"})]}"For any general inquiries, please fill in the following contact form."]
@@ -159,10 +172,11 @@
 
 (rum/defc directors[]
   [:section {:class [(css {:margin-top "45rem"})
-                     (at-media {:max-width "78.125em"} {:padding-left "1.5em"
-                                                        :padding-right "1.5em"})]}
-    [:h1 {:class [(css {:align-self "center"
-                        :margin-bottom "Our Directors"})]}]
+                     (at-media {:max-width "88.75em"} {:padding-left "2.5em"
+                                                        :padding-right "2.5em"})]}
+    [:h1 {:class [(css {:align-self "center"})]}
+
+        "Our Directors"]
    (kayne)
    (jazz)])
 

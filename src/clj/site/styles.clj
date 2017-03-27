@@ -224,7 +224,6 @@
 
      [:main {:width "100vw"
              :max-width (em 53)
-             :background-color "red"
              :align-self 'center
              :padding {:left (em 0.5)
                        :right (em 0.5)}}]
@@ -524,6 +523,8 @@
      ;;;;;;;;;   CONSULTING PAGE   ;;;;;;;;;;
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+     [:img {:border-radius "0.5em"}]
+
      (at-media {:max-width "31.25em"}
          [:.profile {:align-items "center"}])
 
@@ -656,24 +657,6 @@
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-     (def meetup-red "#ED1C40")
-     [:#meetup-button {:background-color meetup-red
-                       :border-radius 0
-                       :border-width (em 0.4)
-                       :border-color 'white
-                       :padding (em 1)}
-      [:span {:color 'white
-              :font-weight 'normal}]
-
-      [:&:hover
-       :&:focus {:background 'white
-                 :border-width (em 0.4)
-                 :border-color meetup-red}
-       [:span {:color 'black}]]]
-
-     [:#meetup-text-group {:margin-top 0
-                           :justify-content 'center
-                           :letter-spacing (em 0.02)}]
 
 
 

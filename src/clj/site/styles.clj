@@ -104,6 +104,8 @@
 
      [:li {:padding-left (rem 0.3125)
            :line-height (em 1.5)}]
+
+     [:li [:p {:margin-top 0}]]
      ;[:ol.values {:margin-left (rem -0.3125)}]
 
      ;[:ol.values
@@ -223,8 +225,8 @@
      [:main {:width "100vw"
         ;     :max-width (em 53)
              :align-self 'center
-             :padding {:left (em 2.5)
-                       :right (em 2.5)}}]
+             :padding {:left (em 0.5)
+                       :right (em 0.5)}}]
 
      ;
      [:ul {:margin-left (rem -0.3125)}]
@@ -511,7 +513,7 @@
       {:margin "1.5em 0"
        :font-size (em 1)
        :line-height 1.5
-       :max-width (em 35)}]
+       :max-width (em 28)}]
      [:.footer-link {:text-decoration 'underline}]
 
 

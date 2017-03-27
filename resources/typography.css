@@ -27,64 +27,43 @@
        url('fonts/source-sans-pro.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
        url('fonts/source-sans-pro.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-*/
 
 
-@media (max-width: 25em)
-{
-    html {
-        font-size: 1rem;
-    }
 
-    h1 {
-        font-size: 1.602em;
-    }
 
-    h2 {
-        font-size: 1.424em;
-    }
 
-    h3 {
-        font-size: 1.266em;
-    }
 
-    h4 {
-        font-size: 1.125em;
-
-    }
-
-}
 
 
 @media (max-width: 25em) {
-  html {
-      font-size: 1em;
-  }
-  h1 {
-        font-size: 1.602em;
+
+
+    html {
+        font-size: 1em;
+    }
+    h1 {
+      font-size: 1.602rem;
       line-height: 1.1;
       margin-bottom: calc((1.5rem - (1.602rem * 1.1)) + 1.5rem);
       margin-top: 1.5rem;
-  }
-  h2 {
-        font-size: 1.424em;
+    }
+    h2 {
+      font-size: 1.424rem;
       line-height: 1.1;
       margin-bottom: calc((1.5rem - (1.424rem * 1.1)) + 1.5rem);
       margin-top: 1.5rem;
 
 
-  }
-  h3 {
-        font-size: 1.266em;
-      line-height: 2rem;
-      margin-bottom: calc((1.5rem - 1.266rem) + 1.5rem);
+    }
+    h3 {
+      font-size: 1.266rem;
+      line-height: 1.1;
+      margin-bottom: calc((1.5rem - (1.266rem * 1.1)) + 1.5rem);
       margin-top: 1.5rem;
-  }
-
-  h4 {
+    }
+    h4 {
         font-size: 1.125em;
-  }
-
+    }
 }
 
 @media (min-width: 25em) and (max-width: 62.5em)
@@ -93,53 +72,34 @@
         font-size: calc(1em + (1.5 - 1) * (100vw - 25em)/(62.5 - 25));
     }
 
-h1 {
-     font-size: calc(1.602em + (2.441 - 1.602) * (100vw - 25em)/(62.5 - 25));
-    line-height: 1.25em;
-}
-
-h2 {
-    font-size: calc(1.424em + (1.953 - 1.424) * (100vw - 25em)/(62.5 - 25));
-    line-height: 1.15284615em;
-
-}
-
-h3 {
-    font-size: calc(1.266em + (1.563 - 1.266) * (100vw - 25em)/(62.5 - 25));
-    line-height: 1.13636364em;
-}
-
-h4 {
-    font-size: calc(1.125em + (1.250 - 1.125) * (100vw - 25em)/(62.5 - 25));
-    line-height: 1.11111111em;
-}
-
-
-
-
-
-
-}
-
-@media (min-width: 25em) and (max-width: 75em) {
-
-    .consulting-block-text {
-        font-size: calc(1.4em + (3 - 1.4) * (100vw - 25em)/(52 - 25))
+    h1 {
+        font-size: calc(1.602em + (2.441 - 1.602) * (100vw - 25em)/(62.5 - 25));
+        line-height: 1.1;
+        margin-bottom: calc((1.5rem - ((1.602em + (2.441 - 1.602) * (100vw - 25em)/(62.5 - 25)) * 1.1)) + 1.5rem);
+        margin-top: 1.5rem;
     }
 
-    .consulting-top-text {
-        font-size: calc(1.5em + (2 - 1.5) * (100vw - 25em)/(52 - 25))
+    h2 {
+        font-size: calc(1.424em + (1.953 - 1.424) * (100vw - 25em)/(62.5 - 25));
+        margin-bottom: calc((1.5rem - ((1.424em + (1.953 - 1.424) * (100vw - 25em)/(62.5 - 25)) * 1.1)) + 1.5rem);
+        line-height: 1.1;
+        margin-top: 1.5rem;
+
     }
 
-}
-@media (min-width: 75em) {
-    .consulting-block-text {
-        font-size: 3em;
+    h3 {
+        font-size: calc(1.266em + (1.563 - 1.266) * (100vw - 25em)/(62.5 - 25));
+        margin-bottom: calc((1.5rem - ((1.266em + (1.563 - 1.266) * (100vw - 25em)/(62.5 - 25)) * 1.1)) + 1.5rem);
+        margin-top: 1.5rem;
+        line-height: 1.1;
     }
-    .consulting-top-text {
-        font-size: 2em;
+
+    h4 {
+        font-size: calc(1.125em + (1.250 - 1.125) * (100vw - 25em)/(62.5 - 25));
+        line-height: 1.11111111em;
     }
 }
+
 
 @media (min-width: 62.5em) {
     html {
@@ -161,18 +121,14 @@ h4 {
     }
     h3 {
         font-size: 1.563rem;
-        line-height: 2rem;
-        margin-bottom: calc((1.5rem - 2rem) + 1.5rem);
+        line-height: 1.1;
+        margin-bottom: calc((1.5rem - (1.563rem * 1.1)) + 1.5rem);
         margin-top: 1.5rem;
     }
     h4 {
         font-size: 1.250rem;
     }
 }
-
-span {
-  line-height: 1.5rem;}
-
 
   /*Because we’ll be needing this in most cases it’s the best practice to assign default line-height, margins and paddings to all elements and deviate from it  only when necessary.
 
@@ -191,3 +147,6 @@ ul, ol {
 }
 
 */
+p, span {
+  line-height: 1.5rem;
+}

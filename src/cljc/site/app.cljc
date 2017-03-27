@@ -68,9 +68,11 @@
                  :background-repeat "repeat"
                  :height "100%"}}
    [:div {:style {:background-image "url(\"/photos/bg.jpg\")"
-                  :background-size "contain"
+                  :background-size "cover"
                   :background-repeat "no-repeat"
-                  :padding-top "70%"
+                  :height "100%"
+                  :max-height "100vh"
+                  :background-position "center"
                   :width "100%"
                   :position "absolute"}}
     (svg)]

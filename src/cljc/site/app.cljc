@@ -1,12 +1,12 @@
 (ns site.app
-  #?(:cljs (:require-macros  [site.styler :refer [css get-css-str]]))
+  #?(:cljs (:require-macros  [site.styler :refer [css at-media get-css-str]]))
   (:require [rum.core :as rum]
             [bidi.bidi :as b :refer [match-route path-for]]
             [site.index :as i]
             [site.components :refer [my-routes]]
 
             ;[site.styler :refer [installer-hack]]
-            #?(:clj [site.styler :refer [css get-css-str]])
+            #?(:clj [site.styler :refer [css at-media get-css-str]])
             #?(:cljs [goog.style])
 
 
@@ -16,11 +16,15 @@
 
 ;
 (rum/defc svg []
-  [:svg  {:class [(css {:align-self "center"
-                        :margin-top "-70%"})]
+  [:svg  {:class [(css {:align-self "center"})
+                  (at-media {:min-width "100rem"}
+                          {:transform "translateX(-30vw)"})]
+          :style {:min-width "15rem"
+                  :max-width "20rem"}
           :height "25vmin"
           :width "40vw"
-          :view-box "0 0 245 67"}
+          :view-box "0 0 245 67"
+          :id "logo"}
     [:use {:xlink-href (str "/svg/logo.svg#logo")}]])
 ;
 
@@ -71,7 +75,7 @@
                   :background-size "cover"
                   :background-repeat "no-repeat"
                   :height "100%"
-                  :max-height "100vh"
+                  :max-height "80vh"
                   :background-position "center"
                   :width "100%"
                   :position "absolute"}}

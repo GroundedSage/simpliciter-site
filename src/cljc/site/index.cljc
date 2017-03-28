@@ -10,13 +10,19 @@
 
 (def qual-style {:class ["qual-style"
                          (css {:background-color "rgba(255,255,255,0.5)"
-                               :border "solid rgba(200,200,200) 2px"
-                               :border-radius "0.5rem"
-                               :padding-left "2em"
-                               :padding-right "2em"})
+                               :border "solid rgb(200,200,200) 2px"
+                               :border-radius "0.5rem"})
                          (at-media {:min-width "78.125"} {:max-width "25em"})]})
 
-
+;
+(rum/defc svg []
+  [:svg  {:class [(css {:align-self "center"})]
+          :width "80%"
+          :height "auto"
+          :view-box "0 0 868 120"
+          :style {:max-width "40rem"}
+          :id "legal-aid"}
+    [:use {:xlink-href (str "/svg/legalaid.svg#legalaid")}]])
 
 
 
@@ -36,18 +42,15 @@
 
 
 (rum/defc kayne []
-  [:div
+  [:div {:style {:margin-bottom "3rem"}}
    [:div
      [:div.profile
+      [:div.profile-photo
        [:img {:src "photos/kayne.png"
-              :alt "Photo of Kayne Roy Ballard"
-              :class [(css {:height "12em"
-                            :width "12em"})
-                      (at-media {:min-width "88.75rem"}
-                            {:height "15rem"
-                             :width "15rem"})]}]
-       [:div.name-tag
-        [:h2 "Kayne Roy Ballard"]
+              :alt "Photo of Kayne Roy Ballard"}]]
+
+      [:div.name-tag
+        [:h2 "Kayne Ballard"]
         [:span "Solicitor and Migration Agent"]]]
     [:div {:class [(at-media {:min-width "88.75rem"} {:flex-direction "row"
                                                       :justify-content "space-between"})]}
@@ -84,16 +87,13 @@
 
 ;
 (rum/defc jazz []
-  [:div
+  [:div {:style {:margin-bottom "3rem"}}
    [:div
     [:div.profile
-     [:img {:src "photos/jazz.png"
-            :alt "Photo of Jasmine Dominic"
-            :class [(css {:height "12em"
-                          :width "12em"})
-                    (at-media {:min-width "88.75rem"}
-                          {:height "15rem"
-                           :width "15rem"})]}]
+     [:div.profile-photo
+       [:img {:src "photos/jazz.png"
+              :alt "Photo of Jasmine Dominic"}]]
+
      [:div.name-tag
        [:h2 "Jasmine Dominic"]
        [:span "Solicitor and Business Consultant"]]]]
@@ -113,8 +113,8 @@
          [:p [:b "Practice Management Course - FMRC"]]
          [:p [:b "Certificate IV Small Business Managament"]]])]
 
-     [:div.more
-      [:h3 "More about Jazz"]
+     [:div#jazz.more
+      [:h3 "More about Jasmine"]
       [:p "Commencing her working life as an “office junior” and quickly working her way up to the position of paralegal and then qualifying as a lawyer, Jasmine has 17 years’ experience working in legal offices."]
       [:p "From 2000 to 2008 Jasmine worked in various law firms, of all sizes, in Brisbane until moving overseas to live and study in Switzerland for two years.  Jasmine completed her law degree in Switzerland and upon her return to Australia completed her Graduate Diploma in Legal Practice, whilst working on a contract basis for various Brisbane law firms."]
       [:p "Jasmine joined Simpliciter Legal Solutions as Legal Practice Director in December 2016 after having run the Queensland Office of Suffolk Law and then her own firm Enlightened Justice which now operates as a community organisation."]
@@ -135,43 +135,45 @@
 ;
 (def contact-styles {:class [(at-media {:min-width "30rem"}
                               {:flex-direction "row"
-                               :align-items "baseline"
-                               :width "23rem"
-                               :justify-content "space-between"})]})
+                               :align-items "baseline"})
+                             (at-media {:max-width "30rem"}
+                               {:margin-bottom "1.5rem"})]})
+
+(def contact-labels {:style {:width "8em"}})
 
 (rum/defc contact-us []
-  [:section
-   [:h2 "Contact Us"]
+  [:section {:class [(at-media {:max-width "55rem"}
+                      {:margin-left "2rem"
+                       :margin-right "2rem"})
+                     (css {:align-self "center"})]}
+   [:h2 {:class [(at-media {:min-width "30rem"}
+                    {:align-self "center"})]}
+      "Contact Us"]
    [:div contact-styles
-     [:strong "Address:"]
+     [:strong contact-labels "Address:"]
      [:span "9 Lawson Street Southport, QLD 4215"]]
    [:div contact-styles
-     [:strong "Mail:"]
+     [:strong contact-labels "Mail:"]
      [:span "PO Box 214, Isle of Capri"]]
    [:div contact-styles
-     [:strong "Telephone:"]
+     [:strong contact-labels "Telephone:"]
      [:span "07 5660 6509"]]
    [:div contact-styles
-     [:strong "Fax:"]
+     [:strong contact-labels "Fax:"]
      [:span "07 5636 0925"]]
    [:div contact-styles
-     [:strong "Email:"]
+     [:strong contact-labels "Email:"]
      [:span "admin@simpliciterlegal.com.au"]]
 
    [:div
-    [:p {:class [(css {:font-size "1.125em"})]}"For any general inquiries, please fill in the following contact form."]
-    [:button {:class [(css {:background-color "black"
-                            :color "white"
-                            :width "100%"
-                            :min-height "60px"
-                            :justify-content "center"})]}
-        "Submit"]]])
+    [:p {:class [(css {:font-size "1.125em"})]}"For any general inquiries, please fill in the following contact form."]]])
+
 
 
 
 
 (rum/defc directors[]
-  [:section {:class [(css {:margin-top "45rem"})
+  [:section {:class [(css {:padding-top "3rem"})
                      (at-media {:max-width "88.75em"} {:padding-left "2.5em"
                                                         :padding-right "2.5em"})]}
     [:h1 {:class [(css {:align-self "center"})]}
@@ -181,9 +183,57 @@
    (jazz)])
 
 
+;
+(rum/defc contact-form []
+  [:div {:class [(css {:align-self "center"
+                       :width "100%"
+                       :max-width "28em"})
+                 (at-media {:max-width "55rem"}
+                       {:padding-left "2rem"
+                        :padding-right "2rem"})]}
+    [:div
+     [:form {:name "contact"
+             "netlify" true}
+      [:p
+       [:label "Your Name:"]
+       [:input {:type "text"
+                :name "name"}]]
+      [:p
+       [:label "Your Email:"]
+       [:input {:type "email"}]]
+      [:p
+       [:label "Your Phone Number:"]
+       [:input {:type "text"
+                 :name "phonenumber"}]]
+      [:p
+       [:label "Subject:"]
+       [:input {:type "email"}]]
 
+      [:ul {:class [(css {:list-style "none"})]}
+       [:li
+        [:input {:type "radio"
+                 :name "legalaid"
+                 :value "applied"}]
+        [:span "I have applied"]]
+       [:li
+        [:input {:type "radio"
+                  :name "legalaid"
+                  :value "not-applied"}]
+        [:span "I am seeking legal aid"]]]
+
+
+      [:p
+       [:label "Your message"]
+       [:textarea {:name "message"}]]
+
+
+      [:button [:span "Send"]]]]])
 
 (rum/defc content []
   [:div
+   (svg)
    (directors)
-   (contact-us)])
+   [:div.full-width
+    [:div.inner-block
+     (contact-us)
+     (contact-form)]]])

@@ -366,11 +366,11 @@
 
 
 
-     [:h1 :h2 :h3 :h4 :p {
-                          :font-weight 'normal}]
+     [:h1 :h2 :h3 :h4 {:letter-spacing "0.02em"
+                       :font-weight '700}]
 
-     [:h1 :h2 :h3 :h4 {:font-family 'bitter}]
-     [:p :span :ol :ul {:font-family "Source Sans Pro"}]
+     [:h1 :h2 :h3 :h4 {:font-family "Lora, serif"}]
+     [:p :span :ol :ul {:font-family "'Open Sans', sans-serif"}]
 
 
      [:.block-grey
@@ -520,37 +520,71 @@
 
 
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     ;;;;;;;;;   CONSULTING PAGE   ;;;;;;;;;;
+     ;;;;;;;;;   SIMPLICITER       ;;;;;;;;;;
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+     [:.name-tag [:span {:color "rgba(0,0,0,0.75)"
+                         :font-weight "bold"}]]
+
+
+     [:form [:button {:width "100%"
+                       :min-height "48px"
+                      :background "black"
+                      :color "white"
+                      :align-items "center"
+                      :justify-content "center"
+                      :flex-direction "row"
+                      :margin-bottom "4.5rem"
+                      :border-radius "0.2em"
+                      :height "3rem"
+                      :display "flex"
+                      :font-weight "bold"
+                      :font-size "1.5rem"}
+              [:&:hover {:background "grey"}]]]
+
+
      [:img {:border-radius "0.5em"}]
+     [:.profile {:margin-bottom "1.5rem"}]
+     [:.profile-photo {:width "12rem"
+                       :height "12rem"}
+      [:img {:width "100%"
+             :height "auto"}]]
+     [:.qual-style {:padding-left "2em"
+                    :padding-right "2em"
+                    :max-width "32rem"}]
 
-     (at-media {:max-width "31.25em"}
-         [:.profile {:align-items "center"}])
+     (at-media {:max-width "45em"}
+         [:.profile :.name-tag {:align-items "center"}])
 
 
-     (at-media {:min-width "31.25em"
+     (at-media {:min-width "45em"
                 :max-width "78.125em"}
 
-       [:.profile {:flex-direction "row"
-                   :justify-content "space-between"
-                   :width "25em"}])
+       [:.profile {:flex-direction "row"}
+         [:.profile-photo {:margin-right "1.5rem"}]])
 
-     (at-media {:min-width "31.25em"}
-              [:.profile {:align-self "flex-start"}])
+
+
 
      (at-media {:min-width "78.125em" :max-width "88.75rem"}
-              [:.qual-style {:margin-left "40vw"
-                              :margin-top "-18em"}]
-              [:.more {:width "22em"
-                       :margin-top "-19.5rem"}])
+              [:.qual-style {:margin-left "42vw"
+                              :margin-top "-19.5em"}]
+              [:.more {:width "21em"
+                       :margin-top "-22.5rem"}]
+              [:#jazz {:margin-top "-19.5rem"}])
+
+     (at-media {:min-width "78.125em"}
+            [:.more [:h3 {:display "none"}]])
 
 
      (at-media {:min-width "88.75rem"}
 
+              [:.profile-photo {:width "15rem"
+                                :height "15rem"}]
               [:.qual-style {:margin-left "0em"
-                               :margin-top "0em"
-                               :padding-left "0em"
+                             :padding-top "0em"
+                               :padding-left "1em"
+                               :padding-right "1em"
                                :width "15em"}]
 
               [:.profile {:flex-direction "row"
@@ -559,10 +593,10 @@
 
               [:.name-tag {:width "35rem"}]
 
-              [:.more {:margin-top "-6rem"
-                       :width "35rem"}
+              [:.more {:margin-top "-9rem"
+                       :width "35rem"}])
 
-                [:h3 {:display "none"}]])
+
 
 
      (at-media {:min-width "88.75"}
@@ -633,12 +667,12 @@
                  :min-height (px 48)
                  :border-radius (em 0.2)
                  :border-style 'solid
-                 :border-color brand-dark
+                 :border-color "rgba(150,150,150,0.8)"
                  :padding (em 0.3)
                  :font-size (rem 1)
-                 :border-width (rem 0.05)
+                 :border-width (rem 0.1)
                  :max-width (rem 35)
-                 :background-color "#ADFFD6"}
+                 :background-color "rgba(220,220,220,0.5)"}
 
       [:&:focus
        :&:hover {:background-color 'white

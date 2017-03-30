@@ -567,11 +567,15 @@
 
 
      (at-media {:min-width "78.125em" :max-width "88.75rem"}
-              [:.qual-style {:margin-left "42vw"
-                              :margin-top "-19.5em"}]
-              [:.more {:width "21em"
-                       :margin-top "-22.5rem"}]
-              [:#jazz {:margin-top "-19.5rem"}])
+              [:.qual-style {;:margin-left "42vw"
+                              :width "22em"
+                              :margin-top "-19.5em"
+                              :height "100%"}]
+              [:.more {:width "24em"}]
+              [:.move-it {:flex-direction "row-reverse"
+                          :justify-content "space-between"}])
+                       ;:margin-top "-22.5rem"}]
+              ;[:#jazz {:margin-top "-19.5rem"}])
 
      (at-media {:min-width "78.125em"}
             [:.more [:h3 {:display "none"}]])

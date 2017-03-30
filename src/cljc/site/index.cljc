@@ -52,8 +52,10 @@
       [:div.name-tag
         [:h2 "Kayne Ballard"]
         [:span "Solicitor and Migration Agent"]]]
-    [:div {:class [(at-media {:min-width "88.75rem"} {:flex-direction "row"
+    [:div {:class ["move-it"
+                   (at-media {:min-width "88.75rem"} {:flex-direction "row"
                                                       :justify-content "space-between"})]}
+
      [:div qual-style
        (qualification-title)
        (make-list
@@ -98,8 +100,10 @@
        [:h2 "Jasmine Dominic"]
        [:span "Solicitor and Business Consultant"]]]]
 
-   [:div {:class [(at-media {:min-width "88.75rem"} {:flex-direction "row"
+   [:div {:class ["move-it"
+                  (at-media {:min-width "88.75rem"} {:flex-direction "row"
                                                      :justify-content "space-between"})]}
+
      [:div qual-style
        (qualification-title)
        (make-list
@@ -182,6 +186,43 @@
    (kayne)
    (jazz)])
 
+;
+(rum/defc making-radio-buttons []
+  [:div {:dangerouslySetInnerHTML {:__html "
+  <div class=\"container\">
+
+  	<h2>Have you applied or are you seeking legal aid</h2>
+
+    <ul>
+    <li>
+      <input type=\"radio\" id=\"f-option\" name=\"selector\">
+      <label for=\"f-option\">I have Applied</label>
+
+      <div class=\"check\"></div>
+    </li>
+
+    <li>
+      <input type=\"radio\" id=\"s-option\" name=\"selector\">
+      <label for=\"s-option\">Boyfriend</label>
+
+      <div class=\"check\"><div class=\"inside\"></div></div>
+    </li>
+
+    <li>
+      <input type=\"radio\" id=\"t-option\" name=\"selector\">
+      <label for=\"t-option\">Cats</label>
+
+      <div class=\"check\"><div class=\"inside\"></div></div>
+    </li>
+  </ul>
+  </div>
+
+  <div class=\"signature\">
+  	<p>Made with <i class=\"much-heart\"></i> by <a href=\"http://codepen.io/AngelaVelasquez\">Angela Velasquez</a></p>
+  </div>
+
+"}}])
+
 
 ;
 (rum/defc contact-form []
@@ -208,12 +249,21 @@
       [:p
        [:label "Subject:"]
        [:input {:type "email"}]]
+      [:span {:class [(css {})]};:font-size "1.2em"})]}
+                            ;:font-weight "bold"})]}
+          "Have you applied for or are you seeking legal aid?"]
+      (making-radio-buttons)
 
-      [:ul {:class [(css {:list-style "none"})]}
+      [:ul {:class [(css {:list-style "none"
+                          :flex-direction "row"
+                          :flex-wrap "wrap"
+                          :justify-content "space-around"})]}
        [:li
         [:input {:type "radio"
                  :name "legalaid"
-                 :value "applied"}]
+                 :value "applied"
+                 :id "applied"}
+         [:label {:for "applied"}]]
         [:span "I have applied"]]
        [:li
         [:input {:type "radio"

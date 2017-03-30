@@ -191,8 +191,6 @@
   [:div {:dangerouslySetInnerHTML {:__html "
   <div class=\"container\">
 
-  	<h2>Have you applied or are you seeking legal aid</h2>
-
     <ul>
     <li>
       <input type=\"radio\" id=\"f-option\" name=\"selector\">
@@ -203,22 +201,13 @@
 
     <li>
       <input type=\"radio\" id=\"s-option\" name=\"selector\">
-      <label for=\"s-option\">Boyfriend</label>
+      <label for=\"s-option\">I am seeking legal aid</label>
 
       <div class=\"check\"><div class=\"inside\"></div></div>
     </li>
 
-    <li>
-      <input type=\"radio\" id=\"t-option\" name=\"selector\">
-      <label for=\"t-option\">Cats</label>
 
-      <div class=\"check\"><div class=\"inside\"></div></div>
-    </li>
   </ul>
-  </div>
-
-  <div class=\"signature\">
-  	<p>Made with <i class=\"much-heart\"></i> by <a href=\"http://codepen.io/AngelaVelasquez\">Angela Velasquez</a></p>
   </div>
 
 "}}])
@@ -252,24 +241,29 @@
       [:span {:class [(css {})]};:font-size "1.2em"})]}
                             ;:font-weight "bold"})]}
           "Have you applied for or are you seeking legal aid?"]
-      (making-radio-buttons)
+    ;  (making-radio-buttons)
 
       [:ul {:class [(css {:list-style "none"
                           :flex-direction "row"
-                          :flex-wrap "wrap"
-                          :justify-content "space-around"})]}
-       [:li
+                          :flex-wrap "wrap"})]}
+                          ;:justify-content "space-around"})]}
+       [:li.new
         [:input {:type "radio"
                  :name "legalaid"
                  :value "applied"
-                 :id "applied"}
-         [:label {:for "applied"}]]
-        [:span "I have applied"]]
-       [:li
+                 :id "applied"}]
+        [:label {:for "applied"}
+          [:p {:class [(css {:margin-bottom "0px"})]} "I have applied"]]
+        [:div.check]]
+       [:li.new
         [:input {:type "radio"
                   :name "legalaid"
-                  :value "not-applied"}]
-        [:span "I am seeking legal aid"]]]
+                  :value "not-applied"
+                  :id "not-applied"}]
+        
+        [:label {:for "not-applied"}
+         [:p {:class [(css {:margin-bottom "0px"})]} "I am seeking legal aid"]]
+        [:div.check]]]
 
 
       [:p

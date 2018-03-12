@@ -186,31 +186,7 @@
    (kayne)
    (jazz)])
 
-;
-(rum/defc making-radio-buttons []
-  [:div {:dangerouslySetInnerHTML {:__html "
-  <div class=\"container\">
 
-    <ul>
-    <li>
-      <input type=\"radio\" id=\"f-option\" name=\"selector\">
-      <label for=\"f-option\">I have Applied</label>
-
-      <div class=\"check\"></div>
-    </li>
-
-    <li>
-      <input type=\"radio\" id=\"s-option\" name=\"selector\">
-      <label for=\"s-option\">I am seeking legal aid</label>
-
-      <div class=\"check\"><div class=\"inside\"></div></div>
-    </li>
-
-
-  </ul>
-  </div>
-
-"}}])
 
 
 ;
@@ -221,57 +197,62 @@
                  (at-media {:max-width "55rem"}
                        {:padding-left "2rem"
                         :padding-right "2rem"})]}
-    [:div
-     [:form {:name "contact"
-             "netlify" true}
-      [:p
-       [:label "Your Name:"]
-       [:input {:type "text"
-                :name "name"}]]
-      [:p
-       [:label "Your Email:"]
-       [:input {:type "email"}]]
-      [:p
-       [:label "Your Phone Number:"]
-       [:input {:type "text"
-                 :name "phonenumber"}]]
-      [:p
-       [:label "Subject:"]
-       [:input {:type "email"}]]
-      [:span {:class [(css {})]};:font-size "1.2em"})]}
-                            ;:font-weight "bold"})]}
-          "Have you applied for or are you seeking legal aid?"]
-    ;  (making-radio-buttons)
 
-      [:ul {:class [(css {:list-style "none"
-                          :flex-direction "row"
-                          :flex-wrap "wrap"})]}
-                          ;:justify-content "space-around"})]}
-       [:li.new
-        [:input {:type "radio"
-                 :name "legalaid"
-                 :value "applied"
-                 :id "applied"}]
-        [:label {:for "applied"}
-          [:p {:class [(css {:margin-bottom "0px"})]} "I have applied"]]
-        [:div.check]]
-       [:li.new
-        [:input {:type "radio"
-                  :name "legalaid"
-                  :value "not-applied"
-                  :id "not-applied"}]
-        
-        [:label {:for "not-applied"}
-         [:p {:class [(css {:margin-bottom "0px"})]} "I am seeking legal aid"]]
-        [:div.check]]]
+   [:div
+       [:form {:name "contact"
+               :netlify true}
+
+        [:p
+         [:label "Your Name:"]
+         [:input {:type "text"
+                  :name "name"}]]
+        [:p
+         [:label "Your Email:"]
+         [:input {:type "email"
+                  :name "email"}]]
+        [:p
+         [:label "Your Phone Number:"]
+         [:input {:type "text"
+                   :name "phone number"}]]
+        [:p
+         [:label "Subject:"]
+         [:input {:type "text"}]]
+        [:span {:class [(css {})]};:font-size "1.2em"})]}
+                              ;:font-weight "bold"})]}
+            "Have you applied for or are you seeking legal aid?"]
 
 
-      [:p
-       [:label "Your message"]
-       [:textarea {:name "message"}]]
+        [:ul {:class [(css {:list-style "none"
+                            :flex-direction "row"
+                            :flex-wrap "wrap"})]}
+                            ;:justify-content "space-around"})]}
+         [:li.new
+          [:input {:type "radio"
+                   :name "legal aid"
+                   :value "applied"
+                   :id "applied"}]
+          [:label {:for "applied"}
+            [:p {:class [(css {:margin-bottom "0px"})]} "I have applied"]]
+          [:div.check]]
+         [:li.new
+          [:input {:type "radio"
+                    :name "legal aid"
+                    :value "not-applied"
+                    :id "not-applied"}]
+
+          [:label {:for "not-applied"}
+           [:p {:class [(css {:margin-bottom "0px"})]} "I am seeking legal aid"]]
+          [:div.check]]]
 
 
-      [:button [:span "Send"]]]]])
+        [:p
+         [:label "Your message"]
+         [:textarea {:name "message"}]]
+
+
+        [:button [:span {:class [(css {:width "100%"
+                                       :text-align "center"})]}
+                      "Send"]]]]])
 
 (rum/defc content []
   [:div

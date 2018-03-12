@@ -10,7 +10,7 @@
                  [samestep/boot-refresh "0.1.0" :scope "test"]
                  [weasel                    "0.7.0"      :scope "test"]
                  [org.clojure/clojurescript "1.9.293"]
-                 [rum "0.10.4"]
+                 [rum "0.10.8"]
                  [org.martinklepsch/boot-garden "1.3.2-0" :scope "test"]
                  [devcards "0.2.2"]
                  [bidi "2.0.14"]

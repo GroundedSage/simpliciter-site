@@ -85,7 +85,7 @@ return sablono.util.as_str.cljs$core$IFn$_invoke$arity$variadic(argseq__7990__au
 });
 
 sablono.util.as_str.cljs$core$IFn$_invoke$arity$variadic = (function (xs){
-return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.str,cljs.core.map.cljs$core$IFn$_invoke$arity$2(sablono.util.to_str,xs));
+return clojure.string.join.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2(sablono.util.to_str,xs));
 });
 
 sablono.util.as_str.cljs$lang$maxFixedArity = (0);
@@ -99,7 +99,7 @@ return sablono.util.as_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(se
  */
 sablono.util.camel_case = (function sablono$util$camel_case(k){
 if(((k instanceof cljs.core.Keyword)) || (typeof k === 'string') || ((k instanceof cljs.core.Symbol))){
-var vec__13073 = clojure.string.split.cljs$core$IFn$_invoke$arity$2(cljs.core.name(k),/-/);
+var vec__13073 = cljs.core.name(k).split("-");
 var seq__13074 = cljs.core.seq(vec__13073);
 var first__13075 = cljs.core.first(seq__13074);
 var seq__13074__$1 = cljs.core.next(seq__13074);
@@ -119,13 +119,17 @@ return k;
  */
 sablono.util.camel_case_keys = (function sablono$util$camel_case_keys(m){
 if(cljs.core.map_QMARK_(m)){
-var ks = cljs.core.keys(m);
-var kmap = cljs.core.zipmap(ks,cljs.core.map.cljs$core$IFn$_invoke$arity$2(sablono.util.camel_case,ks));
-var G__13077 = clojure.set.rename_keys(m,kmap);
-if(cljs.core.map_QMARK_(cljs.core.cst$kw$style.cljs$core$IFn$_invoke$arity$1(m))){
-return cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(G__13077,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$style], null),sablono.util.camel_case_keys);
+var m__$1 = cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p__13081){
+var vec__13082 = p__13081;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__13082,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__13082,(1),null);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sablono.util.camel_case(k),v], null);
+})),m);
+var G__13085 = m__$1;
+if(cljs.core.map_QMARK_(cljs.core.cst$kw$style.cljs$core$IFn$_invoke$arity$1(m__$1))){
+return cljs.core.update.cljs$core$IFn$_invoke$arity$3(G__13085,cljs.core.cst$kw$style,sablono.util.camel_case_keys);
 } else {
-return G__13077;
+return G__13085;
 }
 } else {
 return m;
@@ -148,26 +152,19 @@ return clojure.set.rename_keys(sablono.util.camel_case_keys(attrs),new cljs.core
  * Join the `classes` with a whitespace.
  */
 sablono.util.join_classes = (function sablono$util$join_classes(classes){
-return clojure.string.join.cljs$core$IFn$_invoke$arity$2(" ",cljs.core.flatten(cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__13078_SHARP_){
-if(typeof p1__13078_SHARP_ === 'string'){
-return p1__13078_SHARP_;
+return clojure.string.join.cljs$core$IFn$_invoke$arity$2(" ",cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentVector.EMPTY,cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.mapcat.cljs$core$IFn$_invoke$arity$1((function (x){
+if(typeof x === 'string'){
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [x], null);
 } else {
-return cljs.core.seq(p1__13078_SHARP_);
-
+return cljs.core.seq(x);
 }
-}),classes)));
-});
-/**
- * Return true if the element `type` needs to be wrapped.
- */
-sablono.util.wrapped_type_QMARK_ = (function sablono$util$wrapped_type_QMARK_(type){
-return cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$textarea,null,cljs.core.cst$kw$option,null,cljs.core.cst$kw$input,null], null), null),cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type));
+})),cljs.core.remove.cljs$core$IFn$_invoke$arity$1(cljs.core.nil_QMARK_)),classes));
 });
 /**
  * Return the symbol of a fn that build a React element. 
  */
 sablono.util.react_fn = (function sablono$util$react_fn(type){
-if(cljs.core.truth_(sablono.util.wrapped_type_QMARK_(type))){
+if(cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$textarea,null,cljs.core.cst$kw$input,null,cljs.core.cst$kw$select,null], null), null),cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(type))){
 return cljs.core.cst$sym$sablono$interpreter_SLASH_create_DASH_element;
 } else {
 return cljs.core.cst$sym$js_SLASH_React$createElement;

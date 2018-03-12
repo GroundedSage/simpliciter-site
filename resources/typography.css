@@ -288,3 +288,5 @@ input[type=radio]:checked ~ label{
 
   font-weight: 600;
 }
+
+html, body, #container {height: 100%;}

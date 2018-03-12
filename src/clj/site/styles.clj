@@ -47,7 +47,9 @@
 
     (body
      ;; Remove this later
-     {:color "#050709"}
+
+     {:background-image "url(\"/photos/bg.png\")"
+      :background-repeat "repeat"}
 
 
      [:h6 {:font-size "calc(1.602em + (2.441 - 1.602) * (100vw - 25em)/(62.5 - 25))"}]
@@ -546,7 +548,8 @@
      [:img {:border-radius "0.5em"}]
      [:.profile {:margin-bottom "1.5rem"}]
      [:.profile-photo {:width "12rem"
-                       :height "12rem"}
+                       :height "12rem"
+                       :justify-content "flex-end"}
       [:img {:width "100%"
              :height "auto"}]]
      [:.qual-style {:padding-left "2em"

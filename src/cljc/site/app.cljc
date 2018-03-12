@@ -68,10 +68,8 @@
 
 
 (rum/defc page-wrapper [content]
-  [:div {:style {:background-image "url(\"/photos/bg.png\")"
-                 :background-repeat "repeat"
-                 :height "100%"}}
-   [:div {:style {:background-image "url(\"/photos/bg.jpg\")"
+
+  [:div {:style {:background-image "url(\"/photos/bg.jpg\")"
                   :background-size "cover"
                   :background-repeat "no-repeat"
                   :height "100%"
@@ -79,7 +77,7 @@
                   :background-position "center"
                   :width "100%"
                   :position "absolute"}}
-    (svg)]
+    (svg)
 
    (main content)])
 

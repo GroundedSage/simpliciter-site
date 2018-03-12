@@ -8,67 +8,85 @@
 (defprotocol IInterpreter
   (interpret [this] "Interpret a Clojure data structure as a React fn call."))
 
-;; Taken from om, to hack around form elements.
-;; https://github.com/swannodette/om/blob/master/src/om/dom.cljs
+;; A hack to force input elements to always update itself immediately, without
+;; waiting for requestAnimationFrame
 
 #?(:cljs
-   (defn wrap-form-element [ctor display-name]
-     (js/React.createFactory
-      (js/React.createClass
+   (defn wrap-form-element [element property coerce]
+     (js/React.createClass
        #js
-       {:getDisplayName
-        (fn [] (name display-name))
+       {:displayName (str "wrapped-" element)
         :getInitialState
         (fn []
           (this-as this
-            #js {:value (aget (.-props this) "value")}))
+            #js {"state_value" (coerce (aget (.-props this) property))}))
         :onChange
         (fn [e]
           (this-as this
             (let [handler (aget (.-props this) "onChange")]
               (when-not (nil? handler)
                 (handler e)
-                (.setState this #js {:value (.. e -target -value)})))))
+                (.setState this #js {"state_value" (aget (.-target e) property)})))))
         :componentWillReceiveProps
         (fn [new-props]
           (this-as this
-            (.setState this #js {:value (aget new-props "value")})))
+            (let [state-value   (aget (.-state this) "state_value")
+                  element-value (aget (js/ReactDOM.findDOMNode this) property)]
+              ;; on IE, onChange event might come after actual value of an element
+              ;; have changed. We detect this and render element as-is, hoping that
+              ;; next onChange will eventually come and bring our modifications anyways.
+              ;; Ignoring this causes skipped letters in controlled components
+              ;; https://github.com/reagent-project/reagent/issues/253
+              ;; https://github.com/tonsky/rum/issues/86
+              (if (not= state-value element-value)
+                (.setState this #js {"state_value" element-value})
+                (.setState this #js {"state_value" (coerce (aget new-props property))})))))
         :render
         (fn []
           (this-as this
             ;; NOTE: if switch to macro we remove a closure allocation
-            (let [props #js {}]
+            (let [element-props #js {}]
               (gobject/extend
-                  props (.-props this)
-                  #js {:value (or (aget (.-state this) "value") js/undefined)
-                       :onChange (aget this "onChange")
-                       :children (aget (.-props this) "children")})
-              (ctor props))))}))))
+                element-props
+                (.-props this)
+                #js {:onChange (aget this "onChange")
+                     :children (aget (.-props this) "children")})
+              (aset element-props property (aget (.-state this) "state_value"))
+              (js/React.createElement element element-props))))})))
 
-#?(:cljs (def input (wrap-form-element js/React.DOM.input "input")))
-#?(:cljs (def option (wrap-form-element js/React.DOM.option "option")))
-#?(:cljs (def select (wrap-form-element js/React.DOM.select "select")))
-#?(:cljs (def textarea (wrap-form-element js/React.DOM.textarea "textarea")))
+#?(:cljs (def wrapped-input    (wrap-form-element "input"    "value" str)))
+#?(:cljs (def wrapped-checked  (wrap-form-element "input"    "checked" boolean)))
+#?(:cljs (def wrapped-select   (wrap-form-element "select"   "value" str)))
+#?(:cljs (def wrapped-textarea (wrap-form-element "textarea" "value" str)))
 
 #?(:cljs
-   (defn element-factory
-     "Return a function that creates a React element for the HTML tag `type`."
-     [type]
-     (if (util/wrapped-type? type)
-       (get {:input sablono.interpreter/input
-             :option sablono.interpreter/option
-             :select sablono.interpreter/select
-             :textarea sablono.interpreter/textarea}
-            (keyword type))
-       (partial js/React.createElement (name type)))))
+    (defn defined? [x]
+      (and (not (nil? x))
+           (not (undefined? x)))))
 
 #?(:cljs
    (defn create-element [type props & children]
-     (let [factory (element-factory type)
+     (let [class (or (when (some? props)
+                       (case (name type)
+                         "input"
+                         (case (.-type props)
+                           "radio"    (when (defined? (.-checked props)) wrapped-checked)
+                           "checkbox" (when (defined? (.-checked props)) wrapped-checked)
+                           #_else     (when (defined? (.-value props)) wrapped-input))
+                         "select"     (when (defined? (.-value props)) wrapped-select)
+                         "textarea"   (when (defined? (.-value props)) wrapped-textarea)
+                         #_else       nil))
+                     (name type))
            children (remove nil? children)]
+       ;; React does not allow for value/checked to be nil, only js/undefined
+       (when (some? props)
+         (when (nil? (.-value props))
+           (set! (.-value props) js/undefined))
+         (when (nil? (.-checked props))
+           (set! (.-checked props) js/undefined)))
        (if (empty? children)
-         (factory props)
-         (apply factory props children)))))
+         (js/React.createElement class props)
+         (apply js/React.createElement class props children)))))
 
 #?(:cljs
    (defn attributes [attrs]
@@ -83,7 +101,7 @@
 (defn- interpret-seq
   "Interpret the seq `x` as HTML elements."
   [x]
-  (into [] (map interpret) x))
+  (map interpret x))
 
 #?(:cljs
    (defn element
